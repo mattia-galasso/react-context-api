@@ -1,6 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import { useBudgetMode } from "../contexts/BudgetContext";
 
 export default function Header() {
+  const { test } = useBudgetMode();
+
+  console.log(test);
+
   return (
     <>
       {/* HEADER */}
@@ -39,6 +44,10 @@ export default function Header() {
                 </NavLink>
               </li>
             </ul>
+
+            <button className="btn btn-outline-info">
+              Attiva Modalità Budget
+            </button>
           </div>
         </div>
       </nav>

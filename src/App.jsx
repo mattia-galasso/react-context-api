@@ -5,19 +5,22 @@ import AboutPage from "./pages/AboutPage";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import { BudgetProvider } from "./contexts/BudgetContext";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route Component={DefaultLayout}>
-          <Route index Component={HomePage} />
-          <Route path="/products" Component={ProductsPage} />
-          <Route path="/products/:id" Component={ProductDetailPage} />
-          <Route path="/about-us" Component={AboutPage} />
-          <Route path="*" Component={NotFoundPage} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <BudgetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route Component={DefaultLayout}>
+            <Route index Component={HomePage} />
+            <Route path="/products" Component={ProductsPage} />
+            <Route path="/products/:id" Component={ProductDetailPage} />
+            <Route path="/about-us" Component={AboutPage} />
+            <Route path="*" Component={NotFoundPage} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </BudgetProvider>
   );
 }
