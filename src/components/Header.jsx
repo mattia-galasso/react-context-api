@@ -2,9 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useBudgetMode } from "../contexts/BudgetContext";
 
 export default function Header() {
-  const { test } = useBudgetMode();
-
-  console.log(test);
+  const { budgetMode, setBudgetMode } = useBudgetMode();
 
   return (
     <>
@@ -45,9 +43,28 @@ export default function Header() {
               </li>
             </ul>
 
-            <button className="btn btn-outline-info">
+            {/*             <button className="btn btn-outline-info" onClick={(e) => {
+              if (budgetMode === true)
+            }} >
               Attiva Modalità Budget
             </button>
+ */}
+
+            {budgetMode ? (
+              <button
+                className="btn btn-outline-danger"
+                onClick={(e) => setBudgetMode(false)}
+              >
+                Disattiva Modalità Budget
+              </button>
+            ) : (
+              <button
+                className="btn btn-outline-info"
+                onClick={(e) => setBudgetMode(true)}
+              >
+                Attiva Modalità Budget
+              </button>
+            )}
           </div>
         </div>
       </nav>

@@ -1,30 +1,12 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-
-const apiURL = "https://fakestoreapi.com/products";
+import { useBudgetMode } from "../contexts/BudgetContext";
 
 export default function ProductsPage() {
-  const [products, getProducts] = useState([]);
-
-  const fetchProducts = () => {
-    axios.get(apiURL).then((res) => {
-      const productsData = res.data.map((prod) => {
-        const title =
-          prod.title.length > 70
-            ? prod.title.substring(0, 66) + "..."
-            : prod.title;
-
-        return {
-          ...prod,
-          title: title,
-        };
-      });
-      getProducts(productsData);
-    });
-  };
-
+  const { fetchProducts, products } = useBudgetMode();
   useEffect(fetchProducts, []);
+
+  // console.log("FILTERED ARRAY:", products);
 
   return (
     <>
